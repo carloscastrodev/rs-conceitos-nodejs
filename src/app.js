@@ -52,7 +52,7 @@ app.delete("/repositories/:id", (request, response) => {
     return response.status(400).json("Repository not found");
   }
   repositories.splice(repositoryToDeleteIdx, 1);
-  return response.status(204);
+  return response.status(204).send();
 });
 
 app.post("/repositories/:id/like", (request, response) => {
@@ -64,7 +64,7 @@ app.post("/repositories/:id/like", (request, response) => {
   }
   repositories[repositoryToAddLike].likes =
     repositories[repositoryToAddLike].likes + 1;
-  return repositories[repositoryToAddLike];
+  return response.json(repositories[repositoryToAddLike]);
 });
 
 module.exports = app;
